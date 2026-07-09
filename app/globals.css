@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background-color: #101010;
+  color: #fbf7ee;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #fcc900;
+  color: #101010;
+}
+
+/* Hidden scrollbar for horizontal galleries */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Slim dark scrollbar for the country dropdown list */
+.slim-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.slim-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slim-scroll::-webkit-scrollbar-thumb {
+  background: #2a2a26;
+  border-radius: 9999px;
+}
