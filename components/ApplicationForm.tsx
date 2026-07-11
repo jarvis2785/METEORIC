@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { COUNTRIES, flagOf, type Country } from "@/lib/countries";
 import Reveal from "./Reveal";
 
+const WEBHOOK_URL = "https://hook.us2.make.com/vqt1aunlhj4qk7uasuqsnqwduhzpr4if";
+
 // Budget ranges live here so they can be edited in one place.
 const BUDGET_OPTIONS = ["$1,500 – $2,500", "$2,500 – $4,000", "$4,000+"];
 
@@ -300,18 +302,8 @@ export default function ApplicationForm({
       source: "landing-page",
     };
 
-    const webhookUrl = process.env.NEXT_PUBLIC_MAKE_WEBHOOK_URL;
-
-    if (!webhookUrl) {
-      // Webhook not wired yet — log the payload and show success for demos.
-      console.log("[Meteoric] Application payload (webhook not set):", payload);
-      await new Promise((r) => setTimeout(r, 900));
-      succeed();
-      return;
-    }
-
     try {
-      const res = await fetch(webhookUrl, {
+      const res = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
