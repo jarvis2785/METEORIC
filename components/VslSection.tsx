@@ -2,7 +2,7 @@ import Reveal from "./Reveal";
 
 export default function VslSection() {
   return (
-    <section id="vsl" className="py-24 md:py-32">
+    <section id="vsl" className="scroll-mt-24 py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-5 md:px-8">
         <Reveal className="text-center">
           <h2 className="font-heading text-3xl font-bold tracking-tight text-ivory md:text-5xl">
@@ -26,6 +26,9 @@ export default function VslSection() {
               />
             </div>
           </div>
+          <p className="mt-4 text-center text-sm text-fog">
+            Most people who apply watch this first.
+          </p>
         </Reveal>
       </div>
     </section>

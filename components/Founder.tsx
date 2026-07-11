@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function Founder() {
   return (
-    <section id="founder" className="border-t border-edge py-24 md:py-32">
+    <section id="founder" className="scroll-mt-24 border-t border-edge py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
@@ -46,6 +46,10 @@ export default function Founder() {
               countries to turn real-world credibility into online authority
               that compounds. The protocol isn&rsquo;t theory. It&rsquo;s the
               exact system behind his own brand and every result on this page.
+            </p>
+            <p className="mt-6 text-sm italic text-fog">
+              &ldquo;Every result on this page was built using the same system
+              Moksh used to build his own.&rdquo;
             </p>
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
               <a

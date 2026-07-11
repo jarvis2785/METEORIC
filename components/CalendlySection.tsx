@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 
 export default function CalendlySection() {
   return (
-    <section id="calendly" className="border-t border-edge py-24 md:py-32">
+    <section id="calendly" className="scroll-mt-24 border-t border-edge py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-5 md:px-8">
         <Reveal className="text-center">
           <h2 className="font-heading text-3xl font-bold tracking-tight text-ivory md:text-5xl">

@@ -26,7 +26,7 @@ const LAYERS = [
 
 export default function Protocol() {
   return (
-    <section id="protocol" className="py-24 md:py-32">
+    <section id="protocol" className="scroll-mt-24 py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal className="max-w-3xl">
           <h2 className="font-heading text-3xl font-bold tracking-tight text-ivory md:text-5xl">
@@ -86,6 +86,12 @@ export default function Protocol() {
             </Reveal>
           </div>
         </div>
+
+        <Reveal>
+          <p className="mb-4 mt-16 text-center text-lg font-semibold text-gold">
+            &ldquo;This is what it looks like in practice.&rdquo;
+          </p>
+        </Reveal>
       </div>
     </section>
   );

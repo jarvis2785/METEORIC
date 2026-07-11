@@ -167,7 +167,7 @@ function CountrySelect({
   );
 }
 
-function SuccessState() {
+function SuccessState({ onBook }: { onBook?: () => void }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
@@ -195,18 +195,33 @@ function SuccessState() {
       <p className="mt-3 max-w-sm text-sm leading-relaxed text-fog">
         The team will reach out within 24 hours. Want to skip the wait?
       </p>
-      <motion.a
-        href="#calendly"
-        whileTap={{ scale: 0.98 }}
-        className="mt-8 rounded-full bg-gold px-8 py-4 font-heading text-base font-bold text-ink transition-shadow duration-300 hover:shadow-glow"
-      >
-        Book Your Call Now
-      </motion.a>
+      {onBook ? (
+        <motion.button
+          type="button"
+          onClick={onBook}
+          whileTap={{ scale: 0.98 }}
+          className="mt-8 rounded-full bg-gold px-8 py-4 font-heading text-base font-bold text-ink transition-shadow duration-300 hover:shadow-glow"
+        >
+          Book Your Call Now
+        </motion.button>
+      ) : (
+        <motion.a
+          href="#calendly"
+          whileTap={{ scale: 0.98 }}
+          className="mt-8 rounded-full bg-gold px-8 py-4 font-heading text-base font-bold text-ink transition-shadow duration-300 hover:shadow-glow"
+        >
+          Book Your Call Now
+        </motion.a>
+      )}
     </motion.div>
   );
 }
 
-export default function ApplicationForm() {
+export default function ApplicationForm({
+  onSuccess,
+}: {
+  onSuccess?: () => void;
+}) {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [answers, setAnswers] = useState<Record<ChoiceKey, string>>({
@@ -224,12 +239,20 @@ export default function ApplicationForm() {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const successTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     return () => {
       if (advanceTimer.current) clearTimeout(advanceTimer.current);
+      if (successTimer.current) clearTimeout(successTimer.current);
     };
   }, []);
+
+  // Show the success check briefly, then hand control back to the funnel.
+  const succeed = () => {
+    setStatus("success");
+    if (onSuccess) successTimer.current = setTimeout(onSuccess, 1800);
+  };
 
   const goTo = (next: number, dir: number) => {
     setDirection(dir);
@@ -283,7 +306,7 @@ export default function ApplicationForm() {
       // Webhook not wired yet — log the payload and show success for demos.
       console.log("[Meteoric] Application payload (webhook not set):", payload);
       await new Promise((r) => setTimeout(r, 900));
-      setStatus("success");
+      succeed();
       return;
     }
 
@@ -294,7 +317,7 @@ export default function ApplicationForm() {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
-      setStatus("success");
+      succeed();
     } catch (err) {
       console.error("[Meteoric] Application submit failed:", err);
       setStatus("error");
@@ -306,7 +329,7 @@ export default function ApplicationForm() {
   const currentChoice = !isContactStep ? CHOICE_STEPS[step] : null;
 
   return (
-    <section id="apply" className="border-t border-edge py-24 md:py-32">
+    <section id="apply" className="scroll-mt-24 border-t border-edge py-24 md:py-32">
       <div className="mx-auto max-w-2xl px-5 md:px-8">
         <Reveal className="text-center">
           <h2 className="font-heading text-3xl font-bold tracking-tight text-ivory md:text-5xl">
@@ -318,9 +341,13 @@ export default function ApplicationForm() {
         </Reveal>
 
         <Reveal delay={0.15} className="mt-12">
+          <p className="mb-6 text-center text-sm text-fog">
+            Reviewed by Moksh&rsquo;s team within 24 hours. Serious applicants
+            only.
+          </p>
           <div className="overflow-hidden rounded-2xl border border-edge bg-card">
             {status === "success" ? (
-              <SuccessState />
+              <SuccessState onBook={onSuccess} />
             ) : (
               <>
                 {/* Progress bar */}

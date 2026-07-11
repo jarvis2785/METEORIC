@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 
 const FOR_YOU = [
@@ -53,9 +56,13 @@ function XIcon() {
   );
 }
 
-export default function FitSection() {
+export default function FitSection({
+  onAdvance,
+}: {
+  onAdvance?: () => void;
+}) {
   return (
-    <section className="border-t border-edge py-24 md:py-32">
+    <section className="scroll-mt-24 border-t border-edge py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal className="text-center">
           <h2 className="font-heading text-3xl font-bold tracking-tight text-ivory md:text-5xl">
@@ -100,6 +107,39 @@ export default function FitSection() {
             </div>
           </Reveal>
         </div>
+
+        <Reveal className="py-20 pb-0 text-center">
+          <h3 className="text-center font-heading text-3xl font-bold text-ivory">
+            If that&rsquo;s you — here&rsquo;s how to work with us.
+          </h3>
+          <motion.button
+            type="button"
+            aria-label="Go to the application form"
+            onClick={onAdvance}
+            animate={{ y: [0, 8, 0] }}
+            transition={{
+              duration: 1.6,
+              ease: "easeInOut",
+              repeat: Infinity,
+            }}
+            className="mt-8 inline-flex h-12 w-12 items-center justify-center rounded-full text-gold"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="h-8 w-8"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 4v16m0 0l-7-7m7 7l7-7"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.button>
+        </Reveal>
       </div>
     </section>
   );

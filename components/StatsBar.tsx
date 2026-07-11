@@ -55,7 +55,7 @@ function CountUp({ value, decimals = 0, prefix = "", suffix = "" }: Stat & { lab
 
 export default function StatsBar() {
   return (
-    <section className="border-y border-edge bg-card/40">
+    <section className="scroll-mt-24 border-y border-edge bg-card/40">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 px-5 py-14 md:grid-cols-4 md:px-8">
         {STATS.map((stat, i) => (
           <Reveal key={stat.label} delay={i * 0.08} className="text-center">

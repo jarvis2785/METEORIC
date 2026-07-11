@@ -34,7 +34,7 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function Hero() {
+export default function Hero({ gated = false }: { gated?: boolean }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] items-center overflow-hidden pb-16 pt-32"
+      className="relative flex min-h-[100svh] scroll-mt-24 items-center overflow-hidden pb-16 pt-32"
     >
       {/* Subtle radial yellow glow behind the headline */}
       <div
@@ -105,27 +105,29 @@ export default function Hero() {
           on a single client video
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
-        >
-          <motion.a
-            href="#apply"
-            whileTap={{ scale: 0.98 }}
-            className="w-full rounded-full bg-gold px-8 py-4 font-heading text-base font-bold text-ink transition-shadow duration-300 hover:shadow-glow sm:w-auto"
+        {!gated && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            Apply to Work With Us
-          </motion.a>
-          <motion.a
-            href="#vsl"
-            whileTap={{ scale: 0.98 }}
-            className="w-full rounded-full border border-ivory/30 px-8 py-4 font-heading text-base font-bold text-ivory transition-colors duration-300 hover:border-ivory/60 sm:w-auto"
-          >
-            Watch How It Works
-          </motion.a>
-        </motion.div>
+            <motion.a
+              href="#apply"
+              whileTap={{ scale: 0.98 }}
+              className="w-full rounded-full bg-gold px-8 py-4 font-heading text-base font-bold text-ink transition-shadow duration-300 hover:shadow-glow sm:w-auto"
+            >
+              Apply to Work With Us
+            </motion.a>
+            <motion.a
+              href="#vsl"
+              whileTap={{ scale: 0.98 }}
+              className="w-full rounded-full border border-ivory/30 px-8 py-4 font-heading text-base font-bold text-ivory transition-colors duration-300 hover:border-ivory/60 sm:w-auto"
+            >
+              Watch How It Works
+            </motion.a>
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

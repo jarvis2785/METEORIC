@@ -266,7 +266,7 @@ export default function CaseStudies() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="results" className="border-t border-edge py-24 md:py-32">
+    <section id="results" className="scroll-mt-24 border-t border-edge py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="grid items-end gap-8 lg:grid-cols-[1fr_minmax(0,320px)]">
           <Reveal>
@@ -327,6 +327,15 @@ export default function CaseStudies() {
             See every result on Instagram
             <span aria-hidden="true">&rarr;</span>
           </a>
+        </Reveal>
+
+        <Reveal className="mt-16 border-t border-edge py-16 pb-0 text-center">
+          <h3 className="text-center font-heading text-2xl font-bold text-ivory">
+            Still wondering if this is for you?
+          </h3>
+          <p className="mt-2 text-center text-fog">
+            The next section is the most important one to read.
+          </p>
         </Reveal>
       </div>
     </section>
