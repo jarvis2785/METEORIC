@@ -8,7 +8,7 @@ import Reveal from "./Reveal";
 const WEBHOOK_URL = "https://hook.us2.make.com/vqt1aunlhj4qk7uasuqsnqwduhzpr4if";
 
 // Budget ranges live here so they can be edited in one place.
-const BUDGET_OPTIONS = ["$1,500 – $2,500", "$2,500 – $4,000", "$4,000+"];
+const BUDGET_OPTIONS = ["$1500 – $2500", "$2500 – $4000", "$4000+"];
 
 const ROLE_OPTIONS = [
   "Founder / CEO",
